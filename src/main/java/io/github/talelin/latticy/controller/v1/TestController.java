@@ -1,5 +1,6 @@
 package io.github.talelin.latticy.controller.v1;
 
+import io.github.talelin.latticy.mapper.BannerMapper;
 import io.github.talelin.latticy.model.BannerDO;
 import io.github.talelin.latticy.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class TestController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private BannerMapper bannerMapper;
+
     @GetMapping("")
     public Map<String, String> getTest() {
         Map<String, String> map = new HashMap<>();
@@ -27,8 +31,28 @@ public class TestController {
         return map;
     }
 
+    @GetMapping("/banner/1")
+    public List<BannerDO> getTest2() {
+        return this.testService.getBanners2();
+    }
+
+    @GetMapping("/banner/2")
+    public List<BannerDO> getTest3() {
+        return this.testService.getBanners2();
+    }
+
+    @GetMapping("/banner/3")
+    public List<BannerDO> getTest4() {
+        return bannerMapper.selectList(null);
+    }
+
     @GetMapping("/banner")
     public List<BannerDO> getBannerTest() {
         return this.testService.getBanners();
+    }
+
+    @GetMapping("/banner/insert")
+    public Long insertBanner() {
+        return testService.insertBanner();
     }
 }

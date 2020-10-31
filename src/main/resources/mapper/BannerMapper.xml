@@ -17,4 +17,11 @@
     <select id="getAllBanners" resultMap="BaseResultMap">
         select * from banner;
     </select>
+
+    <insert id="insertBanner" parameterType="io.github.talelin.latticy.model.BannerDO"
+        useGeneratedKeys="true" keyProperty="id"
+    >
+        insert into banner(name, title)
+        values (#{name}, #{title})
+    </insert>
 </mapper>

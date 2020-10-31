@@ -20,4 +20,18 @@ public class TestServiceImpl implements TestService {
     public List<BannerDO> getBanners() {
         return this.bannerMapper.getAllBanners();
     }
+
+    @Override
+    public List<BannerDO> getBanners2() {
+        return this.bannerMapper.getAllBanners2();
+    }
+
+    @Override
+    public Long insertBanner() {
+        BannerDO bannerDO = new BannerDO();
+        bannerDO.setName("newbanner");
+        bannerDO.setTitle("newbannertitle");
+        bannerMapper.insertBanner(bannerDO);
+        return bannerDO.getId();
+    }
 }

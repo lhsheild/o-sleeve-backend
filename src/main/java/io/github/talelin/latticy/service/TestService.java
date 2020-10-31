@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface TestService {
     List<BannerDO> getBanners();
+    List<BannerDO> getBanners2();
+    Long insertBanner();
 }
