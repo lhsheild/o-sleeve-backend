@@ -5,13 +5,16 @@ import io.github.talelin.latticy.common.mybatis.Page;
 import io.github.talelin.latticy.dto.BannerDTO;
 import io.github.talelin.latticy.model.BannerDO;
 import io.github.talelin.latticy.service.impl.BannerServiceImpl;
+import io.github.talelin.latticy.vo.DeletedVO;
 import io.github.talelin.latticy.vo.PageResponseVO;
+import io.github.talelin.latticy.vo.UpdatedVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 
 @RestController
 @RequestMapping("/v1/banner")
@@ -20,13 +23,21 @@ public class BannerController {
     @Autowired
     private BannerServiceImpl bannerService;
 
-    @PutMapping("/{id}")
-    public void update(
-            @PathVariable Long id,
-            @RequestBody @Validated BannerDTO bannerDTO
-            )
-    {
+    @DeleteMapping("/{id}")
+    public DeletedVO delete(
+            @PathVariable @Positive Long id
+    ) {
+        bannerService.delete(id);
+        return new DeletedVO();
+    }
 
+    @PutMapping("/{id}")
+    public UpdatedVO update(
+            @PathVariable @Positive Long id,
+            @RequestBody @Validated BannerDTO bannerDTO
+    ) {
+        bannerService.update(bannerDTO, id);
+        return new UpdatedVO();
     }
 
     @GetMapping("/page")
