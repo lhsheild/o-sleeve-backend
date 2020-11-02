@@ -8,20 +8,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import java.util.Date;
 import java.util.List;
 
+@TableName("banner_item")
 @Getter
 @Setter
-@TableName("banner")
-public class BannerDO extends BaseModel {
+public class BannerItemDO extends BaseModel {
     //    @TableId(value = "id", type = IdType.AUTO)
 //    private Long id;
     private String name;
-    private String description;
-    private String title;
     private String img;
+    private String keyword;
+    private String type;
+
 //    @JsonIgnore
 //    private Date createTime;
 //    @JsonIgnore
@@ -29,4 +29,6 @@ public class BannerDO extends BaseModel {
 //    @JsonIgnore
 //    @TableLogic
 //    private Date deleteTime;
+
+    private Long bannerId;
 }
