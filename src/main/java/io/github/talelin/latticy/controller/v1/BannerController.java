@@ -6,9 +6,11 @@ import io.github.talelin.latticy.common.mybatis.Page;
 import io.github.talelin.latticy.dto.BannerDTO;
 import io.github.talelin.latticy.model.BannerDO;
 import io.github.talelin.latticy.service.impl.BannerServiceImpl;
+import io.github.talelin.latticy.vo.CreatedVO;
 import io.github.talelin.latticy.vo.DeletedVO;
 import io.github.talelin.latticy.vo.PageResponseVO;
 import io.github.talelin.latticy.vo.UpdatedVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +41,16 @@ public class BannerController {
     ) {
         bannerService.update(bannerDTO, id);
         return new UpdatedVO();
+    }
+
+    @PostMapping
+    public CreatedVO create(
+            @RequestBody @Validated BannerDTO bannerDTO
+    ) {
+        BannerDO bannerDO = new BannerDO();
+        BeanUtils.copyProperties(bannerDTO, bannerDO);
+        this.bannerService.save(bannerDO);
+        return new CreatedVO();
     }
 
     @GetMapping("/page")

@@ -9,6 +9,7 @@ import io.github.talelin.latticy.mapper.BannerItemMapper;
 import io.github.talelin.latticy.mapper.BannerMapper;
 import io.github.talelin.latticy.model.BannerDO;
 import io.github.talelin.latticy.model.BannerItemDO;
+import io.github.talelin.latticy.service.BannerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
