@@ -1,6 +1,10 @@
 package io.github.talelin.latticy.controller.v1;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.github.talelin.core.annotation.GroupRequired;
+import io.github.talelin.core.annotation.LoginRequired;
+import io.github.talelin.core.annotation.PermissionMeta;
+import io.github.talelin.core.annotation.PermissionModule;
 import io.github.talelin.latticy.bo.BannerWithItemsBO;
 import io.github.talelin.latticy.common.mybatis.Page;
 import io.github.talelin.latticy.dto.BannerDTO;
@@ -22,11 +26,14 @@ import javax.validation.constraints.Positive;
 @RestController
 @RequestMapping("/v1/banner")
 @Validated
+@PermissionModule(value = "Banner")
 public class BannerController {
     @Autowired
     private BannerServiceImpl bannerService;
 
     @DeleteMapping("/{id}")
+    @PermissionMeta(value = "删除Banner")
+    @GroupRequired
     public DeletedVO delete(
             @PathVariable @Positive Long id
     ) {
@@ -35,6 +42,8 @@ public class BannerController {
     }
 
     @PutMapping("/{id}")
+    @PermissionMeta(value = "更新Banner")
+    @GroupRequired
     public UpdatedVO update(
             @PathVariable @Positive Long id,
             @RequestBody @Validated BannerDTO bannerDTO
@@ -44,6 +53,8 @@ public class BannerController {
     }
 
     @PostMapping
+    @PermissionMeta(value = "创建Banner")
+    @GroupRequired
     public CreatedVO create(
             @RequestBody @Validated BannerDTO bannerDTO
     ) {
@@ -54,6 +65,7 @@ public class BannerController {
     }
 
     @GetMapping("/page")
+    @LoginRequired
     public PageResponseVO<BannerDO> getBanners(
             @RequestParam(defaultValue = "0", required = false) @Min(value = 0, message = "{page.number.min}") Integer page,
             @RequestParam(defaultValue = "0", required = false) @Min(value = 1, message = "{page.count.min}") @Max(value = 30, message = "{page.count.max}") Integer count
@@ -64,6 +76,7 @@ public class BannerController {
     }
 
     @GetMapping("/{id}")
+    @LoginRequired
     public BannerWithItemsBO getWithItems(
             @PathVariable @Positive Long id
     ) {

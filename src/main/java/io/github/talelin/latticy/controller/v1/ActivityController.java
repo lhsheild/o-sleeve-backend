@@ -1,6 +1,11 @@
 package io.github.talelin.latticy.controller.v1;
 
 
+import io.github.talelin.core.annotation.GroupRequired;
+import io.github.talelin.core.annotation.LoginRequired;
+import io.github.talelin.core.annotation.PermissionMeta;
+import io.github.talelin.core.annotation.PermissionModule;
+import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,29 +31,38 @@ import org.springframework.web.bind.annotation.RestController;
 */
 @RestController
 @RequestMapping("/v1/activity")
+@PermissionModule(value = "Activity")
 public class ActivityController {
 
     @PostMapping("")
+    @PermissionMeta(value = "创建Activity")
+    @GroupRequired
     public CreatedVO create() {
         return new CreatedVO();
     }
 
     @PutMapping("/{id}")
+    @PermissionMeta(value = "更新Activity")
+    @GroupRequired
     public UpdatedVO update(@PathVariable @Positive(message = "{id.positive}") Long id) {
         return new UpdatedVO();
     }
 
     @DeleteMapping("/{id}")
+    @PermissionMeta(value = "删除Activity")
+    @GroupRequired
     public DeletedVO delete(@PathVariable @Positive(message = "{id.positive}") Long id) {
         return new DeletedVO();
     }
 
     @GetMapping("/{id}")
+    @LoginRequired
     public ActivityDO get(@PathVariable(value = "id") @Positive(message = "{id.positive}") Long id) {
         return null;
     }
 
     @GetMapping("/page")
+    @LoginRequired
     public PageResponseVO<ActivityDO> page(
             @RequestParam(name = "count", required = false, defaultValue = "10")
             @Min(value = 1, message = "{page.count.min}")
