@@ -1,10 +1,7 @@
 package io.github.talelin.latticy.controller.v1;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import io.github.talelin.core.annotation.GroupRequired;
-import io.github.talelin.core.annotation.LoginRequired;
-import io.github.talelin.core.annotation.PermissionMeta;
-import io.github.talelin.core.annotation.PermissionModule;
+import io.github.talelin.core.annotation.*;
 import io.github.talelin.latticy.bo.BannerWithItemsBO;
 import io.github.talelin.latticy.common.mybatis.Page;
 import io.github.talelin.latticy.dto.BannerDTO;
@@ -77,6 +74,8 @@ public class BannerController {
 
     @GetMapping("/{id}")
     @LoginRequired
+    @PermissionMeta(value = "查询Banner")
+    @Logger(template = "{user.username}查询了Banner数据")
     public BannerWithItemsBO getWithItems(
             @PathVariable @Positive Long id
     ) {
