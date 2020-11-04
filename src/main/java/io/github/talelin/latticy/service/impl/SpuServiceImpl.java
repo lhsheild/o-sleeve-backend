@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author generator@TaleLin
@@ -16,5 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SpuServiceImpl extends ServiceImpl<SpuMapper, SpuDO> implements SpuService {
+    public void getDetail(Long id) {
 
+    }
 }

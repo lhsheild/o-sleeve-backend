@@ -27,9 +27,9 @@ import javax.validation.constraints.Positive;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
-* @author generator@TaleLin
-* @since 2020-11-03
-*/
+ * @author generator@TaleLin
+ * @since 2020-11-03
+ */
 @RestController
 @RequestMapping("/v1/spu")
 public class SpuController {
@@ -54,6 +54,13 @@ public class SpuController {
     @GetMapping("/{id}")
     public SpuDO get(@PathVariable(value = "id") @Positive(message = "{id.positive}") Long id) {
         return null;
+    }
+
+    @GetMapping("/{id}/detail")
+    public void getDetail(
+            @PathVariable(value = "id") @Positive(message = "{id.positive}") Long id
+    ) {
+
     }
 
     @GetMapping("/page")
