@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.github.talelin.latticy.common.mybatis.Page;
 import io.github.talelin.latticy.common.util.PageUtil;
 import io.github.talelin.latticy.model.BannerDO;
+import io.github.talelin.latticy.model.SpuDetailDO;
 import io.github.talelin.latticy.service.SpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,10 +58,10 @@ public class SpuController {
     }
 
     @GetMapping("/{id}/detail")
-    public void getDetail(
+    public SpuDetailDO getDetail(
             @PathVariable(value = "id") @Positive(message = "{id.positive}") Long id
     ) {
-
+        return this.spuService.getDetail(id);
     }
 
     @GetMapping("/page")

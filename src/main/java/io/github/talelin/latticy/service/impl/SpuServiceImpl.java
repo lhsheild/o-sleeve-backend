@@ -2,6 +2,7 @@ package io.github.talelin.latticy.service.impl;
 
 import io.github.talelin.latticy.model.SpuDO;
 import io.github.talelin.latticy.mapper.SpuMapper;
+import io.github.talelin.latticy.model.SpuDetailDO;
 import io.github.talelin.latticy.service.SpuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SpuServiceImpl extends ServiceImpl<SpuMapper, SpuDO> implements SpuService {
-    public void getDetail(Long id) {
-
+    @Override
+    public SpuDetailDO getDetail(Long id) {
+        SpuDetailDO spuDetailDO = this.getBaseMapper().getDetail(id);
+        return spuDetailDO;
     }
 }
