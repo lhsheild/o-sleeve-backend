@@ -1,6 +1,7 @@
 package io.github.talelin.latticy.controller.v1;
 
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 */
 @RestController
 @RequestMapping("/v1/spec-value")
+@Validated
 public class SpecValueController {
 
     @PostMapping("")

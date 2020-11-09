@@ -6,6 +6,7 @@ import io.github.talelin.core.annotation.LoginRequired;
 import io.github.talelin.core.annotation.PermissionMeta;
 import io.github.talelin.core.annotation.PermissionModule;
 import lombok.extern.java.Log;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/activity")
 @PermissionModule(value = "Activity")
+@Validated
 public class ActivityController {
 
     @PostMapping("")
